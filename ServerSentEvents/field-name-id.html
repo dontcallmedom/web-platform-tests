@@ -21,9 +21,7 @@
     lei = null;
     t = async_test("The field name is 'id': set the last event ID buffer to the field value.");
  
-    s.onopen = function(e){ 
-    	/* Connection opened. */
-    };
+
     	
     s.onmessage = function(e){
     	if(lei == null){
@@ -36,10 +34,8 @@
     	}
     };
     
-    //	console.log(s.testevent);
-    s.onerror = function(e){
-    	/* Connection closed. */
-    };
+
+
     
 
   </script>

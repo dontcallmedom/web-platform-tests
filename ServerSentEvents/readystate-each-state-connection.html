@@ -34,9 +34,7 @@
 		tclose.step(function() {assert_equals(source.readyState, EventSource.CLOSED)});
 		tclose.done();
     	}, false);
-    source.addEventListener('error', function(e){
-    	/* Connection closed. */
-    	}, false);
+
     
   </script>
   </div>

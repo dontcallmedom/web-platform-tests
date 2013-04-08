@@ -19,9 +19,7 @@
 		var source = new EventSource('http://html5.mosquito-fp7.eu/messages/t0022');
 		var tclose = async_test("The close() method must set the readyState attribute to CLOSED (2)");
     
-    source.addEventListener('open', function(e){ 
-    	/* Connection opened. */
-    }, false);
+
     	
     source.addEventListener('message', function(e){
  	    	source.close();
@@ -29,9 +27,7 @@
 			tclose.done();
     }, false);
     
-    source.addEventListener('error', function(e){
-    	/* Connection closed. */
-     }, false);
+
     
   </script>
   </div>

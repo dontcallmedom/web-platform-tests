@@ -20,10 +20,7 @@
     t = async_test("The field name is other: the field is not 'data'.");
     u = async_test("The field name is other: the field is not 'id'.");
  
-    s.onopen = function(e){
-		/* Connection opened. */
-    };
-    	
+	
     s.onmessage = function(e){
     console.log(e.type);
     		var dat = e.data.split("\n");
@@ -33,10 +30,8 @@
     		u.done();
     };
     
-    //	console.log(s.testevent);
-    s.onerror = function(e){
-    	/* Connection closed. */
-    };
+
+
     
 
   </script>

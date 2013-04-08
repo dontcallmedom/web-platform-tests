@@ -17,17 +17,13 @@
   <script>
     var s = new EventSource('http://html5.mosquito-fp7.eu/messages/t0025');
     
-    s.onopen = function(e){ 
-    	/* Connection opened. */
-    };
+
     	
     s.onmessage = function(e){
     //alert(dat);
     };
     	
-    s.onerror = function(e){
-    	/* Connection closed. */
-    };
+
     
     test(function(){assert_true(typeof(s.onopen) == "function")},"The onopen event handler must be supported.");
     test(function(){assert_true(typeof(s.onmessage) == "function")},"The onmessage event handler must be supported.");

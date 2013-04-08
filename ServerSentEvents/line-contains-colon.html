@@ -18,9 +18,7 @@
     var s = new EventSource('http://html5.mosquito-fp7.eu/messages/t0072');
     t = async_test("If the line contains a U+003A COLON character (:), collect the characters on the line before the first (:), and let field be that string, collect the characters on the line after the first (:), and let value be that string. If value starts with a U+0020 SPACE character, remove it from value.");
     u = async_test("If value starts with more than one U+0020 SPACE character, remove one SPACE character from value.");
-    s.onopen = function(e){ 
-    	/* Connection opened. */
-    };
+
     	
     s.onmessage = function(e){
     	var dat = e.data.split("\n");
@@ -31,9 +29,7 @@
     	u.done();
     };
     	
-    s.onerror = function(e){
-    	/* Connection closed. */
-    };
+
 
   </script>
   </div>

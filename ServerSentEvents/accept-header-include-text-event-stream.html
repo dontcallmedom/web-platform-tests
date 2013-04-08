@@ -18,9 +18,7 @@
     var s = new EventSource('http://html5.mosquito-fp7.eu/messages/t0030');
     ttext = async_test("accept header include 'text/event-stream'");
 
-    s.onopen = function(e){ 
-    	/* Connection opened. */
-    };
+
     	
     s.onmessage = function(e){
     console.log(e.data);
@@ -29,9 +27,7 @@
     	ttext.done();
     };
     	
-    s.onerror = function(e){
-    	/* Connection closed. */
-    };
+
 
   </script>
   </div>

@@ -19,9 +19,7 @@
     var s = new EventSource('http://html5.mosquito-fp7.eu/messages/t0077');
     t = async_test("The field name is 'retry': check if the event try to reconnect after 'retry' value.");
  
-    s.onopen = function(e){ 
-    	/* Connection opened. */
-    };
+
     	
     s.onmessage = function(e){
     //s.close();
@@ -29,7 +27,7 @@
     //		t.done();
     };
     
-    //	console.log(s.testevent);
+
     s.onerror = function(e){
     	if(e.eventPhase == EventSource.CLOSED){
     	/* Connection closed. */
