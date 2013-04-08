@@ -17,12 +17,11 @@
   <script>
   	setup({timeout:1500});
     var s = new EventSource('http://html5.mosquito-fp7.eu/messages/t0074');
-    vt = null;
     t = async_test("field name is 'event': set the event name buffer to field value.");
 
     	
     s.addEventListener("testevent", function(e){
-    	t.step(function(){assert_equals(e.type, "testevent")});
+    	t.step(function(){assert_equals(e.type, "testevent");});
     	t.done();
     }, false);
     

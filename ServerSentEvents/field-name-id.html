@@ -18,17 +18,16 @@
   <script>
   	setup({timeout:6000});
     var s = new EventSource('http://html5.mosquito-fp7.eu/messages/t0076');
-    lei = null;
-    t = async_test("The field name is 'id': set the last event ID buffer to the field value.");
+    var lei = null;
+    var t = async_test("The field name is 'id': set the last event ID buffer to the field value.");
  
 
     	
     s.onmessage = function(e){
     	if(lei == null){
     		lei = e.lastEventId;
-    		console.log("lei :"+lei);
     	}else{
-    		t.step(function(){assert_true(lei != e.lastEventId)});
+    		t.step(function(){assert_not_equals(lei, e.lastEventId);});
     		t.done();
     		document.getElementById("w").innerHTML = "";
     	}

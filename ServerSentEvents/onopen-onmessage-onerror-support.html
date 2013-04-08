@@ -17,17 +17,10 @@
   <script>
     var s = new EventSource('http://html5.mosquito-fp7.eu/messages/t0025');
     
-
-    	
-    s.onmessage = function(e){
-    //alert(dat);
-    };
-    	
-
-    
-    test(function(){assert_true(typeof(s.onopen) == "function")},"The onopen event handler must be supported.");
-    test(function(){assert_true(typeof(s.onmessage) == "function")},"The onmessage event handler must be supported.");
-    test(function(){assert_true(typeof(s.onerror) == "function")},"The onerror event handler must be supported.");
+   
+    test(function(){assert_equals(typeof(s.onopen), "function")},"The onopen event handler must be supported.");
+    test(function(){assert_equals(typeof(s.onmessage), "function")},"The onmessage event handler must be supported.");
+    test(function(){assert_equals(typeof(s.onerror), "function")},"The onerror event handler must be supported.");
     
   </script>
 </body>

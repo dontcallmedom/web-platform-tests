@@ -17,15 +17,14 @@
   <script>
   	setup({timeout:6000});
     var s = new EventSource('http://html5.mosquito-fp7.eu/messages/t0078');
-    t = async_test("The field name is other: the field is not 'data'.");
-    u = async_test("The field name is other: the field is not 'id'.");
+    var t = async_test("The field name is other: the field is not 'data'.");
+    var u = async_test("The field name is other: the field is not 'id'.");
  
 	
     s.onmessage = function(e){
-    console.log(e.type);
     		var dat = e.data.split("\n");
-    		t.step(function(){assert_true(dat[1] != "other")});
-    		u.step(function(){assert_true(e.lastEventId != "other")});
+    		t.step(function(){assert_not_equals(dat[1], "other");});
+    		u.step(function(){assert_not_equals(e.lastEventId, "other");});
     		t.done();
     		u.done();
     };

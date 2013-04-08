@@ -17,25 +17,23 @@
   <script>
   	setup({timeout:1500});
     var s = new EventSource('http://html5.mosquito-fp7.eu/messages/t0075');
-    vt = null;
-    i = null;
-    t1 = async_test("field name is 'data' and append any U+000A LINE FEED (LF) character to the data buffer: Append the next field value and data buffer on the same line.");
-    t2 = async_test("field name is 'data' and append a single U+000A LINE FEED (LF) character to the data buffer: Append the field value to the data buffer.");
-    t3 = async_test("field name is 'data' and append two U+000A LINE FEED (LF) characters to the data buffer: Send a new data buffer, append the field value to the data buffer.");
+    var i = null;
+    var t1 = async_test("field name is 'data' and append any U+000A LINE FEED (LF) character to the data buffer: Append the next field value and data buffer on the same line.");
+    var t2 = async_test("field name is 'data' and append a single U+000A LINE FEED (LF) character to the data buffer: Append the field value to the data buffer.");
+    var t3 = async_test("field name is 'data' and append two U+000A LINE FEED (LF) characters to the data buffer: Send a new data buffer, append the field value to the data buffer.");
 
 
     	
     s.onmessage = function(e){
     	var dat = e.data.split("\n");
-    	console.log(e.data.split("\n"));
-    	t1.step(function(){assert_equals(dat[1], "data bufferdata: no LF")});
-    	t2.step(function(){assert_equals(dat[2], "one LF")});
+    	t1.step(function(){assert_equals(dat[1], "data bufferdata: no LF");});
+    	t2.step(function(){assert_equals(dat[2], "one LF");});
     	t1.done();
     	t2.done();
     	if(i == null){
     		i=1;
     	}else{
-    		t3.step(function(){assert_equals(dat[0], "two LF")});
+    		t3.step(function(){assert_equals(dat[0], "two LF");});
     		t3.done()
     	};
     };

@@ -16,14 +16,14 @@
 	<div id="log"></div>
   <script>
     var s = new EventSource('http://html5.mosquito-fp7.eu/messages/t0030');
-    ttext = async_test("accept header include 'text/event-stream'");
+    var ttext = async_test("accept header include 'text/event-stream'");
 
 
     	
     s.onmessage = function(e){
     console.log(e.data);
     	var dat = e.data.split("\n");
-    	ttext.step(function(){assert_equals(dat[1].toString(), "text/event-stream")});
+    	ttext.step(function(){assert_equals(dat[1].toString(), "text/event-stream");});
     	ttext.done();
     };
     	

@@ -21,17 +21,15 @@
     var topen = async_test("The readyState attribute is 1 (OPEN)");
     var tclose = async_test("The readyState attribute is 2 (CLOSED)");
     
-    tconnect.step(function() {assert_equals(source.readyState, EventSource.CONNECTING)});
+    tconnect.step(function() {assert_equals(source.readyState, EventSource.CONNECTING);});
     tconnect.done();
     
-    source.addEventListener('message', function(e){
-	}, false);
     source.addEventListener('open', function(e){ 
     	/* Connection opened. */
-    	topen.step(function() {assert_equals(source.readyState, EventSource.OPEN)});
+    	topen.step(function() {assert_equals(source.readyState, EventSource.OPEN);});
 		topen.done();
 		source.close();
-		tclose.step(function() {assert_equals(source.readyState, EventSource.CLOSED)});
+		tclose.step(function() {assert_equals(source.readyState, EventSource.CLOSED);});
 		tclose.done();
     	}, false);
 

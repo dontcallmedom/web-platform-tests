@@ -23,7 +23,7 @@
     	
     source.addEventListener('message', function(e){
  	    	source.close();
-			tclose.step(function() {assert_equals(source.readyState, EventSource.CLOSED)});
+			tclose.step(function() {assert_equals(source.readyState, EventSource.CLOSED);});
 			tclose.done();
     }, false);
     

@@ -15,9 +15,9 @@
 	<div id="log"></div>
   <script>
   	setup({timeout:6000});
-  	vt = null;
+  	var vt = null;
     var s = new EventSource('http://html5.mosquito-fp7.eu/messages/t0077');
-    t = async_test("The field name is 'retry': check if the event try to reconnect after 'retry' value.");
+    var t = async_test("The field name is 'retry': check if the event try to reconnect after 'retry' value.");
  
 
     	
@@ -33,9 +33,8 @@
     	/* Connection closed. */
     			if(vt == null){
     				vt = 2000;
-    				console.log(e.data);
     			}else{
-    				t.step(function(){assert_equals(vt, 2000)});
+    				t.step(function(){assert_equals(vt, 2000);});
     				t.done();
     			}
     			document.getElementById("w").innerHTML = "";
