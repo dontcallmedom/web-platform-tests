@@ -19,22 +19,17 @@
     var s = new EventSource('http://html5.mosquito-fp7.eu/messages/t0074');
     vt = null;
     t = async_test("field name is 'event': set the event name buffer to field value.");
-    s.onopen = function(e){ 
-    	/* Connection opened. */
-    };
+
     	
     s.addEventListener("testevent", function(e){
     	t.step(function(){assert_equals(e.type, "testevent")});
     	t.done();
     }, false);
     
-    //	console.log(s.testevent);
-    s.onerror = function(e){
-    	/* Connection closed. */
-    };
+
+
     
 
   </script>
-  </div>
 </body>
 </html>

@@ -23,9 +23,7 @@
     t2 = async_test("field name is 'data' and append a single U+000A LINE FEED (LF) character to the data buffer: Append the field value to the data buffer.");
     t3 = async_test("field name is 'data' and append two U+000A LINE FEED (LF) characters to the data buffer: Send a new data buffer, append the field value to the data buffer.");
 
-    s.onopen = function(e){ 
-    	/* Connection opened. */
-    };
+
     	
     s.onmessage = function(e){
     	var dat = e.data.split("\n");
@@ -42,13 +40,10 @@
     	};
     };
     
-    //	console.log(s.testevent);
-    s.onerror = function(e){
-    	/* Connection closed. */
-    };
+
+
     
 
   </script>
-  </div>
 </body>
 </html>
