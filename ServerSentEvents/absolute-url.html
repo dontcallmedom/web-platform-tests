@@ -16,14 +16,8 @@
 	<div id="log"></div>
   <script>
   var url = "http://html5.mosquito-fp7.eu/messages/t0012";
-    var source = new EventSource(url);
-    test(function(){assert_equals(source.url, url)}, "The 'url' attribute is the absolute url.");
-	test(function(){assert_equals(source.URL, url)}, "The 'URL' attribute is the absolute url.");
-
-    source.addEventListener('message', function(e){
-	}, false);
-
-
+  var source = new EventSource(url);
+  test(function(){assert_equals(source.url, url)}, "The 'url' attribute is the absolute url.");
   </div>
 </body>
 </html>
