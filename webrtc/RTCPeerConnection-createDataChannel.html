@@ -1,4 +1,6 @@
 <!doctype html>
+<link rel="help" href="https://w3c.github.io/webrtc-pc/#dom-peerconnection-createdatachannel">
+<link rel="help" href="https://w3c.github.io/webrtc-pc/#dom-rtcdatachannelinit">
 <meta charset=utf-8>
 <title>RTCPeerConnection.prototype.createDataChannel</title>
 <script src=/resources/testharness.js></script>
@@ -228,7 +230,7 @@ test(() => {
     maxPacketLifeTime: 0,
     maxRetransmits: 0
   }));
-}, 'createDataChannel with both maxPacketLifeTime and maxRetransmits should throw SyntaxError');
+}, 'createDataChannel with both maxPacketLifeTime and maxRetransmits should throw TypeError');
 
 /*
   6.2.  RTCDataChannel

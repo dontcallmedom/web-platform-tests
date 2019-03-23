@@ -1,5 +1,6 @@
 <!doctype html>
 <meta charset=utf-8>
+<link rel="help" href="https://w3c.github.io/webrtc-pc/#dom-peerconnection-setlocaldescription">
 <title>RTCPeerConnection.prototype.setLocalDescription</title>
 <script src="/resources/testharness.js"></script>
 <script src="/resources/testharnessreport.js"></script>
@@ -137,15 +138,5 @@
     await signalingstatechangeResolver;
     assert_equals(eventSequence, 'onsignalingstatechange;setLocalDescription;');
   }, 'onsignalingstatechange fires before setLocalDescription resolves');
-
-  /*
-    TODO
-      4.3.2.  setLocalDescription
-        4.  If description.sdp is null and description.type is pranswer, set description.sdp
-            to lastAnswer.
-        7.  If description.type is pranswer and description.sdp does not match lastAnswer,
-            reject the promise with a newly created InvalidModificationError and abort these
-            steps.
-   */
 
 </script>

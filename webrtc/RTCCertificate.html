@@ -1,6 +1,11 @@
 <!doctype html>
 <meta charset="utf-8">
 <title>RTCCertificate Tests</title>
+<link rel="help" href="https://w3c.github.io/webrtc-pc/#dom-rtccertificate">
+<link rel="help" href="https://w3c.github.io/webrtc-pc/#certificate-validation">
+<link rel="help" href="https://w3c.github.io/webrtc-pc/#setconfig-certificate">
+<link rel="help" href="https://w3c.github.io/webrtc-pc/#dom-rtccertificate-getfingerprints">
+<link rel="help" href="https://w3c.github.io/webrtc-pc/#dom-rtcdtlsfingerprint">
 <script src="/resources/testharness.js"></script>
 <script src="/resources/testharnessreport.js"></script>
 <script>
@@ -166,7 +171,7 @@
         'Expect fingerprints to return an array');
 
       assert_greater_than_equal(fingerprints.length, 1,
-        'Expect at last one fingerprint in array');
+        'Expect at least one fingerprint in array');
 
       for(const fingerprint of fingerprints) {
         assert_equals(typeof fingerprint, 'object',
