@@ -40,14 +40,12 @@
         2.  Resolve p with the resulting RTCStatsReport object, containing the gathered stats.
    */
   promise_test(t => {
-    const pc = new RTCPeerConnection();
-    t.add_cleanup(() => pc.close());
+    const pc = createPeerConnectionWithCleanup(t);
     return pc.getStats();
   }, 'getStats() with no argument should succeed');
 
   promise_test(t => {
-    const pc = new RTCPeerConnection();
-    t.add_cleanup(() => pc.close());
+    const pc = createPeerConnectionWithCleanup(t);
     return pc.getStats(null);
   }, 'getStats(null) should succeed');
 
@@ -60,8 +58,7 @@
           created InvalidAccessError.
    */
   promise_test(t => {
-    const pc = new RTCPeerConnection();
-    t.add_cleanup(() => pc.close());
+    const pc = createPeerConnectionWithCleanup(t);
     return getTrackFromUserMedia('audio')
     .then(([track, mediaStream]) => {
       return promise_rejects_dom(t, 'InvalidAccessError', pc.getStats(track));
@@ -69,8 +66,7 @@
   }, 'getStats() with track not added to connection should reject with InvalidAccessError');
 
   promise_test(t => {
-    const pc = new RTCPeerConnection();
-    t.add_cleanup(() => pc.close());
+    const pc = createPeerConnectionWithCleanup(t);
     return getTrackFromUserMedia('audio')
     .then(([track, mediaStream]) => {
       pc.addTrack(track, mediaStream);
@@ -79,8 +75,7 @@
   }, 'getStats() with track added via addTrack should succeed');
 
   promise_test(async t => {
-    const pc = new RTCPeerConnection();
-    t.add_cleanup(() => pc.close());
+    const pc = createPeerConnectionWithCleanup(t);
 
     const stream = await getNoiseStream({audio: true});
     t.add_cleanup(() => stream.getTracks().forEach(track => track.stop()));
@@ -91,8 +86,7 @@
   }, 'getStats() with track added via addTransceiver should succeed');
 
   promise_test(t => {
-    const pc = new RTCPeerConnection();
-    t.add_cleanup(() => pc.close());
+    const pc = createPeerConnectionWithCleanup(t);
     return getTrackFromUserMedia('audio')
     .then(([track, mediaStream]) => {
       // addTransceiver allows adding same track multiple times
@@ -108,8 +102,7 @@
   }, `getStats() with track associated with more than one sender should reject with InvalidAccessError`);
 
   promise_test(t => {
-    const pc = new RTCPeerConnection();
-    t.add_cleanup(() => pc.close());
+    const pc = createPeerConnectionWithCleanup(t);
     const transceiver1 = pc.addTransceiver('audio');
 
     // Create another transceiver that resends what
@@ -126,8 +119,7 @@
           return result, and abort these steps.
    */
   promise_test(t => {
-    const pc = new RTCPeerConnection();
-    t.add_cleanup(() => pc.close());
+    const pc = createPeerConnectionWithCleanup(t);
     return pc.getStats()
     .then(statsReport => {
       validateStatsReport(statsReport);
@@ -240,10 +232,8 @@
   ];
 
   async_test(t => {
-    const pc1 = new RTCPeerConnection();
-    t.add_cleanup(() => pc1.close());
-    const pc2 = new RTCPeerConnection();
-    t.add_cleanup(() => pc2.close());
+    const pc1 = createPeerConnectionWithCleanup(t);
+    const pc2 = createPeerConnectionWithCleanup(t);
 
     const dataChannel = pc1.createDataChannel('test-channel');
 
