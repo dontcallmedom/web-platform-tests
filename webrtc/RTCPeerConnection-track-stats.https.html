@@ -17,7 +17,7 @@
 
   // The following helper functions are called from RTCStats-helper.js
   // (depends on dictionary-helper.js):
-  //   validateRtcStats
+  //   validateStatsReport
 
   async_test(t => {
     const pc = new RTCPeerConnection();
@@ -33,11 +33,7 @@
     .then(t.step_func(report => {
       let trackStats = findStatsByTypeAndId(report, 'track', track.id);
       assert_true(trackStats != null, 'Has stats for track');
-      // TODO(hbos): Here and elsewhere, validateRtcStats() only tests id,
-      // timestamp and type is correct type. Should validate based on stats type
-      // but it expects both audio and video members.
-      // https://github.com/web-platform-tests/wpt/issues/9010
-      validateRtcStats(report, trackStats);
+      validateStatsReport(report, [trackStats]);
       t.done();
     }))
     .catch(t.step_func(reason => {
@@ -66,7 +62,7 @@
     .then(t.step_func(report => {
       let trackStats = findStatsByTypeAndId(report, 'track', track.id);
       assert_true(trackStats != null, 'Has stats for track');
-      validateRtcStats(report, trackStats);
+      validateStatsReport(report, [trackStats]);
       t.done();
     }))
     .catch(t.step_func(reason => {
@@ -96,8 +92,7 @@
       let outboundStats = findStatsByTypeAndMember(report, 'outbound-rtp',
                                                    'trackId', trackStats.id);
       assert_true(outboundStats != null, 'Has stats for outbound RTP stream');
-      validateRtcStats(report, trackStats);
-      validateRtcStats(report, outboundStats);
+      validateStatsReport(report, [trackStats, outboundStats]);
       t.done();
     }))
     .catch(t.step_func(reason => {
@@ -130,9 +125,8 @@
       assert_true(trackStats != null, 'Has stats for receiving track');
       let inboundStats = findStatsByTypeAndMember(report, 'inbound-rtp',
                                                   'trackId', trackStats.id);
-      assert_true(inboundStats != null, 'Has stats for outbound RTP stream');
-      validateRtcStats(report, trackStats);
-      validateRtcStats(report, inboundStats);
+      assert_true(inboundStats != null, 'Has stats for inbound RTP stream');
+      validateStatsReport(report, [trackStats, inboundStats]);
       t.done();
     }))
     .catch(t.step_func(reason => {
@@ -162,7 +156,7 @@
     .then(t.step_func(report => {
       let trackStats = findStatsByTypeAndId(report, 'track', sendingTrack2.id);
       assert_true(trackStats != null, 'Has stats for replaced track');
-      validateRtcStats(report, trackStats);
+      validateStatsReport(report, [trackStats]);
       t.done();
     }))
     .catch(t.step_func(reason => {
@@ -198,8 +192,7 @@
       let outboundStats = findStatsByTypeAndMember(report, 'outbound-rtp',
                                                    'trackId', trackStats.id);
       assert_true(outboundStats != null, 'Has stats for outbound RTP stream');
-      validateRtcStats(report, trackStats);
-      validateRtcStats(report, outboundStats);
+      validateStatsReport(report, [trackStats, outboundStats]);
       t.done();
     }))
     .catch(t.step_func(reason => {
@@ -236,8 +229,7 @@
       let outboundStats = findStatsByTypeAndMember(report, 'outbound-rtp',
                                                    'trackId', trackStats.id);
       assert_true(outboundStats != null, 'Has stats for outbound RTP stream');
-      validateRtcStats(report, trackStats);
-      validateRtcStats(report, outboundStats);
+      validateStatsReport(report, [trackStats, outboundStats]);
       t.done();
     }))
     .catch(t.step_func(reason => {
@@ -513,7 +505,7 @@
     visitedIds.add(currentId);
     assert_true(report.has(currentId), 'Broken reference.');
     let stat = report.get(currentId);
-    validateRtcStats(report, stat);
+    validateStatsReport(report, [stat]);
     for (let member in stat) {
       if (member.endsWith('Id')) {
         validateStatsGraphRecursively(report, stat[member], visitedIds);

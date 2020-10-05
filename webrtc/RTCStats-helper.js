@@ -54,8 +54,9 @@ const statsValidatorTable = {
 // follows the respective definitions.
 // Stats objects with unknown type are ignored and
 // only basic validation is done.
-function validateStatsReport(statsReport) {
+function validateStatsReport(statsReport, limitToStats = []) {
   for(const [id, stats] of statsReport.entries()) {
+    if (limitToStats.length > 0 && !limitToStats.find(s => s.id === id)) continue;
     assert_equals(stats.id, id,
       'expect stats.id to be the same as the key in statsReport');
 
